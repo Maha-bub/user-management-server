@@ -12,6 +12,8 @@ const user = [
     { id: 6, name: 'Jubayer Alam', email: 'jubayeralam@gmail.com' }
 ]
 app.use(cors())
+app.use(express.json())
+
 
 app.get('/', (req, res) => {
     res.send('User are comming soon')
@@ -23,6 +25,7 @@ app.get('/users', (req, res) => {
 })
 
 app.post('/users', (req, res) => {
+    console.log('data from client side', req.body)
     res.send({ success: true, message: "user added successfully" })
 })
 
