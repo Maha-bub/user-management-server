@@ -3,7 +3,7 @@ import cors from 'cors';
 const app = express()
 const PORT = process.env.PORT || 5000
 
-const user = [
+const users = [
     { id: 1, name: 'Mahabub', email: 'mahabubul@gmail.com' },
     { id: 2, name: 'Alam', email: 'alam@gmail.com' },
     { id: 3, name: 'sohel', email: 'sohel@gmail.com' },
@@ -21,11 +21,14 @@ app.get('/', (req, res) => {
 
 
 app.get('/users', (req, res) => {
-    res.send(user)
+    res.send(users)
 })
 
 app.post('/users', (req, res) => {
     console.log('data from client side', req.body)
+    const newUser = req.body
+    newUser.id = users.length + 1;
+    users.push(newUser)
     res.send({ success: true, message: "user added successfully" })
 })
 
